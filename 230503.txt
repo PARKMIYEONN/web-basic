@@ -96,3 +96,11 @@ ti + enter <title></title>
 w3schools.com
 
 웹 공부를 했다 하면 여기가 사전임
+
+
+
+<ul> <ol> <li> html 리스트!
+
+
+
+
