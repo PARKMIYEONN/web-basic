@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- <script src="utils.js"></script> -->
+  </head>
+  <body>
+    <script>
+      let num = prompt("숫자");
+      let bool = !isNaN(num);
+      if (!bool || num === "") {
+        alert("숫자를 입력해 주세요");
+      } else if (num < 1 || num > 100) {
+        alert("1이상 100이하를 넣어주세요");
+      } else {
+        for (let i = 1; i <= 100; i++) {
+          console.log(i);
+        }
+        alert("완료되었습니다")
+      }
+
+    </script>
+  </body>
+</html>
