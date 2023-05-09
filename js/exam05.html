@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+
+        
+        .click{
+            position: relative;
+            top: 30px;
+            border: 1px black solid;
+            margin: 5px;
+            padding: 20px 50px;
+            background-color: gray;
+            color: white; 
+        }
+        
+    </style>
+    <script>
+        let selected = null;
+        function changeHtmlColor(color){
+            let text = document.getElementById('span01');
+            selectedNemo(text);
+            text.style.backgroundColor = color
+            text.style.color = 'black'
+        }
+        
+        function changeCssColor(color){
+            let text = document.getElementById('span02');
+            selectedNemo(text);
+            text.style.backgroundColor = color
+            text.style.color = 'black'
+        }
+
+        function changeJavascriptColor(color){
+            let text = document.getElementById('span03');
+            selectedNemo(text);
+            text.style.backgroundColor = color
+            text.style.color = 'black'
+        }
+
+        function selectedNemo(newSelected){
+            if(selected !== null){
+                selected.style.backgroundColor = 'gray';
+                selected.style.color = 'white';
+            }
+            selected = newSelected;
+        }
+
+    </script>
+</head>
+<body>
+    <span id="span01" class="click" onmouseover="changeHtmlColor('white')">html</span>
+    <span id="span02" class="click" onmouseover="changeCssColor('white')">css</span>
+    <span id="span03" class="click" onmouseover="changeJavascriptColor('white')">javascript</span>
+   
+</body>
+</html>

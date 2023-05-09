@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #text {
+        text-align: center;
+        font-size: xx-large;
+        padding-top: 25%;
+      }
+
+      #button{
+        text-align: center;
+        
+      }
+    </style>
+    <script>
+      
+
+      function changeColor(color) {
+        alert(color + "색으로 변경됩니다")
+        let text = document.getElementById("text");
+        text.style.color = color;
+      }
+    </script>
+  </head>
+  <body>
+    <div id="text"></div>
+    <div id="button" style="display: none;">
+    <input type="button" value="빨강" onclick="changeColor('red')">
+    <input type="button" value="파랑" onclick="changeColor('blue')">
+    <input type="button" value="초록" onclick="changeColor('green')">
+    </div>
+    <script>
+      let text = prompt("text 입력");
+      if (text === null || text === "") {
+        alert("텍스트를 입력하세요");
+      } else {
+        document.getElementById("text").textContent = text;
+        document.getElementById("button").style.display = "block";
+      }
+    </script>
+    
+  </body>
+</html>
