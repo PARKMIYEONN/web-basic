@@ -22,22 +22,7 @@
     </style>
     <script>
         let selected = null;
-        function changeHtmlColor(color){
-            let text = document.getElementById('span01');
-            selectedNemo(text);
-            text.style.backgroundColor = color
-            text.style.color = 'black'
-        }
-        
-        function changeCssColor(color){
-            let text = document.getElementById('span02');
-            selectedNemo(text);
-            text.style.backgroundColor = color
-            text.style.color = 'black'
-        }
-
-        function changeJavascriptColor(color){
-            let text = document.getElementById('span03');
+        function changeColor(text, color){
             selectedNemo(text);
             text.style.backgroundColor = color
             text.style.color = 'black'
@@ -54,9 +39,9 @@
     </script>
 </head>
 <body>
-    <span id="span01" class="click" onmouseover="changeHtmlColor('white')">html</span>
-    <span id="span02" class="click" onmouseover="changeCssColor('white')">css</span>
-    <span id="span03" class="click" onmouseover="changeJavascriptColor('white')">javascript</span>
+    <span id="span01" class="click" onmouseover="changeColor(this,'white')">html</span>
+    <span id="span02" class="click" onmouseover="changeColor(this,'white')">css</span>
+    <span id="span03" class="click" onmouseover="changeColor(this,'white')">javascript</span>
    
 </body>
 </html>

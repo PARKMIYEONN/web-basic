@@ -1,0 +1,62 @@
+PS C:\Users\User\Desktop\api> git init
+Initialized empty Git repository in C:/Users/User/Desktop/api/.git/
+Reinitialized existing Git repository in C:/Users/User/Desktop/api/.git/
+PS C:\Users\User\Desktop\api> git remote -v
+origin  https://github.com/PARKMIYEONN/web-basic.git (fetch)
+origin  https://github.com/PARKMIYEONN/web-basic.git (push)
+PS C:\Users\User\Desktop\api> git add.
+git: 'add.' is not a git command. See 'git --help'.
+
+The most similar command is
+PS C:\Users\User\Desktop\api> git add .
+warning: in the working copy of '강의교안link.txt', LF will be replaced by CRLF the next time Git touches it
+PS C:\Users\User\Desktop\api> commit -m "html 연습문제 1, 2" 
+commit : 'commit' 용어가 cmdlet, 함수, 스크립트 파일 또는 실행할 수 있는 프로그램 이름으로 인식되지 않습니다. 이름이 정확한지 확인하고 경로가 포함된 경우 경로가 올바른지 검증한 다음 다시 시도하십시오.
+위치 줄:1 문자:1
++ commit -m "html 연습문제 1, 2"
++ ~~~~~~
+    + CategoryInfo          : ObjectNotFound: (commit:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+[master (root-commit) 3a1a016] html 연습문제 1, 2
+ 8 files changed, 152 insertions(+)
+ create mode 100644 230503.txt
+ create mode 100644 html/exam01.html
+ create mode 100644 html/exam01.pdf
+ create mode 100644 html/exam02.pdf
+ create mode 100644 html/index.html
+ create mode 100644 html/target.html
+ create mode 100644 "html/\353\247\210\353\247\210\353\217\231\353\217\231.jpg"
+PS C:\Users\User\Desktop\api> git log
+commit 3a1a016df95a5f542ffe9fdf6594429a55667212 (HEAD -> master)
+Author: PARK MIYEON <miyoun1003@naver.com>
+Date:   Wed May 3 14:19:11 2023 +0900
+
+    html 연습문제 1, 2
+PS C:\Users\User\Desktop\api> git push -u origin master
+Enumerating objects: 11, done.
+Counting objects: 100% (11/11), done.
+Delta compression using up to 20 threads
+Compressing objects: 100% (11/11), done.
+Writing objects: 100% (11/11), 111.96 KiB | 37.32 MiB/s, done.
+Total 11 (delta 0), reused 0 (delta 0), pack-reused 0
+To https://github.com/PARKMIYEONN/web-basic.git
+ * [new branch]      master -> master
+branch 'master' set up to track 'origin/master'.
+PS C:\Users\User\Desktop\api>
+
+
+
+
+git init
+레파지토리 로컬에 만들기
+
+git remote add 내 로컬을 리모트랑 연결(깃허브에 레퍼지토리 만들면 복붙 가능)
+
+git remote -v로 확인 가능
+
+git add . 모든 파일 스테이징
+
+git log 확인 가능
+
+
