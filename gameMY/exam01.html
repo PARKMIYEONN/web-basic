@@ -16,6 +16,7 @@
         width: 400px;
         height: 400px;
         border: 1px black solid;
+        overflow: hidden;
       }
 
       #pompom {
@@ -28,28 +29,33 @@
         /* display: none; */
       }
 
+      .enemy{
+        position: absolute;
+        right: 0px;
+      }
+
       #enemy01{
         position: absolute;
         width: 20px;
-        top: 10px;
+        /* top: 10px; */
 
       }
       #enemy02{
         position: absolute;
         width: 40px;
-        top: 20px;
+        /* top: 20px; */
 
       }
       #enemy03{
         position: absolute;
         width: 60px;
-        top: 40px;
+        /* top: 40px; */
 
       }
       #enemy04{
         position: absolute;
         width: 80px;
-        top: 50px;
+        /* top: 50px; */
 
       }
     </style>
@@ -57,6 +63,10 @@
       $(function () {
 
         const enemy = $(".enemy");
+        const enemy01 = $("#enemy01");
+        const enemy02 = $("#enemy02");
+        const enemy03 = $("#enemy03");
+        const enemy04 = $("#enemy04");
         const pompom = $("#pompom");
         let count = 3;
 
@@ -105,7 +115,7 @@
           // 오른쪽 벽에 닿았는지
           const pompomRightMargin = $("#pompom").css("right").replace("px", "");
           if (pompomRightMargin > 0) {
-            pompom.animate({ left: "+=5px" }, 0);
+            pompom.animate({ left: "+=10px" }, 0);
           }
           // 보정
           if (pompomRightMargin < 0) {
@@ -118,10 +128,15 @@
         }
 
         function enemyMoving(){
-            const speed = getRandomNumber(1000, 3000);
+            const speed = getRandomNumber(2000, 2500);
             enemy.animate({right: '400px'}, speed, 'linear',function(){
                 // score += 100;
-                enemy.css('right', '-50px');
+                enemy.css('right', '-80px');
+                enemy01.animate({top:getRandomNumber(5,340) + 'px'},getRandomNumber(1500, 2000), 'linear');
+                enemy02.animate({top:getRandomNumber(5,340) + 'px'},getRandomNumber(2000, 2500), 'linear');
+                enemy03.animate({top:getRandomNumber(5,340) + 'px'},getRandomNumber(2300, 2500), 'linear');
+                enemy04.animate({top:getRandomNumber(5,340) + 'px'},getRandomNumber(2500, 2700), 'linear');
+                
                 enemyMoving();
             });
         }
@@ -130,14 +145,14 @@
         function moveLeft() {
           const pompomLeftMargin = $("#pompom").css("left").replace("px", "");
           if (pompomLeftMargin > 0) {
-            pompom.animate({ left: "-=5px" }, 0);
+            pompom.animate({ left: "-=10px" }, 0);
           }
         }
 
         function moveUp() {
           const pompomTopMargin = $("#pompom").css("top").replace("px", "");
           if (pompomTopMargin > 0) {
-            pompom.animate({ top: "-=5px" }, 0);
+            pompom.animate({ top: "-=10px" }, 0);
           }
         }
 
@@ -146,7 +161,7 @@
             .css("bottom")
             .replace("px", "");
           if (pompomBottomMargin > 0) {
-            pompom.animate({ top: "+=5px" }, 0);
+            pompom.animate({ top: "+=10px" }, 0);
           }
         }
       });
