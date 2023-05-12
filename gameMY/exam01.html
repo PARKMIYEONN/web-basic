@@ -29,39 +29,34 @@
         /* display: none; */
       }
 
-      .enemy{
+      .enemy {
         position: absolute;
         right: 0px;
       }
 
-      #enemy01{
+      #enemy01 {
         position: absolute;
         width: 20px;
         /* top: 10px; */
-
       }
-      #enemy02{
+      #enemy02 {
         position: absolute;
         width: 40px;
         /* top: 20px; */
-
       }
-      #enemy03{
+      #enemy03 {
         position: absolute;
         width: 60px;
         /* top: 40px; */
-
       }
-      #enemy04{
+      #enemy04 {
         position: absolute;
         width: 80px;
         /* top: 50px; */
-
       }
     </style>
     <script>
       $(function () {
-
         const enemy = $(".enemy");
         const enemy01 = $("#enemy01");
         const enemy02 = $("#enemy02");
@@ -92,30 +87,58 @@
         });
 
         function gameStart() {
-          // countDown();
-          //3초 있다가 나오기
-          // setTimeout(function(){
-          //     pompom.show();
-          // },3000);
           enemyMoving();
+          checkGameOver();
         }
 
-        // function countDown(){
-        //     let timer = setInterval(function(){
-        //         console.log(count);
-        //         count--;
-        //         if(count <= 0){
-        //             clearInterval(timer);
-        //         }
-        //     },1000)
-        // }
+        function isColliding(el1, el2) {
+          const rect1 = el1.getBoundingClientRect();
+          const rect2 = el2.getBoundingClientRect();
+
+          return !(
+            rect1.bottom < rect2.top ||
+            rect1.top > rect2.bottom ||
+            rect1.right < rect2.left ||
+            rect1.left > rect2.right ||
+            rect1.bottom < rect2.top
+          );
+        }
+
+        function checkGameOver() {
+          // setInterval(function () {
+          for (let i = 0; i < 4; i++) {
+            if (isColliding(pompom[0], enemy[i])) {
+              if (
+                pompom[0].getBoundingClientRect().width <
+                enemy[i].getBoundingClientRect().width
+              ) {
+                pompom.stop();
+                enemy.stop();
+              } else {
+                $(pompom[0]).width(function (i, w) {
+                  return w + 5;
+                });
+                $(pompom[0]).height(function (i, h) {
+                  return h + 5;
+                });
+
+                // pompom[0].style.width = (parseInt(pompom[0].style.width)+5)+'px';
+                // pompom[0].style.height = (parseInt(pompom[0].style.height)+5)+'px';
+                // console.log(typeof(pompom[0].style.width));
+                // console.log(typeof(parseInt(pompom[0].style.width)+5+'px'));
+              }
+            }
+          }
+          setTimeout(checkGameOver, 1000 / 60);
+          // }, 1000 / 60);
+        }
 
         // 왼쪽 기준으로 150px 떨어진 곳으로 이동해라
         function moveRight() {
           // 오른쪽 벽에 닿았는지
           const pompomRightMargin = $("#pompom").css("right").replace("px", "");
           if (pompomRightMargin > 0) {
-            pompom.animate({ left: "+=10px" }, 0);
+            pompom.animate({ left: "+=20px" }, 0);
           }
           // 보정
           if (pompomRightMargin < 0) {
@@ -123,36 +146,52 @@
           }
         }
 
-        function getRandomNumber(min, max){
-            return Math.floor(Math.random()*(max-min+1)) + min;
+        function getRandomNumber(min, max) {
+          return Math.floor(Math.random() * (max - min + 1)) + min;
         }
 
-        function enemyMoving(){
-            const speed = getRandomNumber(2000, 2500);
-            enemy.animate({right: '400px'}, speed, 'linear',function(){
-                // score += 100;
-                enemy.css('right', '-80px');
-                enemy01.animate({top:getRandomNumber(5,340) + 'px'},getRandomNumber(1500, 2000), 'linear');
-                enemy02.animate({top:getRandomNumber(5,340) + 'px'},getRandomNumber(2000, 2500), 'linear');
-                enemy03.animate({top:getRandomNumber(5,340) + 'px'},getRandomNumber(2300, 2500), 'linear');
-                enemy04.animate({top:getRandomNumber(5,340) + 'px'},getRandomNumber(2500, 2700), 'linear');
-                
-                enemyMoving();
-            });
+        function enemyMoving() {
+          const speed = getRandomNumber(2000, 2500);
+          enemy.animate({ right: "400px" }, speed, "linear", function () {
+            // score += 100;
+            enemy.css("right", "-80px");
+            enemy01.animate(
+              { top: getRandomNumber(5, 340) + "px" },
+              getRandomNumber(1500, 2000),
+              "linear"
+            );
+            enemy02.animate(
+              { top: getRandomNumber(5, 340) + "px" },
+              getRandomNumber(2000, 2500),
+              "linear"
+            );
+            enemy03.animate(
+              { top: getRandomNumber(5, 340) + "px" },
+              getRandomNumber(2300, 2500),
+              "linear"
+            );
+            enemy04.animate(
+              { top: getRandomNumber(5, 340) + "px" },
+              getRandomNumber(2500, 2700),
+              "linear"
+            );
+
+            enemyMoving();
+          });
         }
 
         // 왼쪽 기준으로 50px 떨어진 곳으로 이동해라
         function moveLeft() {
           const pompomLeftMargin = $("#pompom").css("left").replace("px", "");
           if (pompomLeftMargin > 0) {
-            pompom.animate({ left: "-=10px" }, 0);
+            pompom.animate({ left: "-=20px" }, 0);
           }
         }
 
         function moveUp() {
           const pompomTopMargin = $("#pompom").css("top").replace("px", "");
           if (pompomTopMargin > 0) {
-            pompom.animate({ top: "-=10px" }, 0);
+            pompom.animate({ top: "-=20px" }, 0);
           }
         }
 
@@ -161,7 +200,7 @@
             .css("bottom")
             .replace("px", "");
           if (pompomBottomMargin > 0) {
-            pompom.animate({ top: "+=10px" }, 0);
+            pompom.animate({ top: "+=20px" }, 0);
           }
         }
       });
@@ -169,11 +208,11 @@
   </head>
   <body>
     <div id="container">
-      <img id="pompom"  src="images/pom.png" alt="" />
-      <img id="enemy01" class="enemy" src="images/enemy.png" alt="">
-      <img id="enemy02" class="enemy" src="images/enemy.png" alt="">
-      <img id="enemy03" class="enemy" src="images/enemy.png" alt="">
-      <img id="enemy04" class="enemy" src="images/enemy.png" alt="">
+      <img id="pompom" src="images/pom.png" alt="" />
+      <img id="enemy01" class="enemy" src="images/enemy.png" alt="" />
+      <img id="enemy02" class="enemy" src="images/enemy.png" alt="" />
+      <img id="enemy03" class="enemy" src="images/enemy.png" alt="" />
+      <img id="enemy04" class="enemy" src="images/enemy.png" alt="" />
     </div>
   </body>
 </html>
