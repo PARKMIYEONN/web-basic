@@ -17,6 +17,8 @@
         height: 400px;
         border: 1px black solid;
         overflow: hidden;
+        /* max-width: 81px; */
+        z-index: 0;
       }
 
       #pompom {
@@ -33,7 +35,6 @@
         position: absolute;
         right: 0px;
       }
-
       #enemy01 {
         position: absolute;
         width: 20px;
@@ -54,6 +55,30 @@
         width: 80px;
         /* top: 50px; */
       }
+      #clear {
+        position: absolute;
+        width: 400px;
+        height: 400px;
+        text-align: center;
+        font-size: xx-large;
+        background-image: url(../gameMY/images/pom.png);
+        color: blue;
+        padding-top: 155px;
+        display: none;
+        z-index: 1;
+      }
+      #gameover {
+        position: absolute;
+        width: 400px;
+        height: 400px;
+        text-align: center;
+        font-size: xx-large;
+        background-image: url(../gameMY/images/pom.png);
+        color: red;
+        padding-top: 155px;
+        display: none;
+        z-index: 1;
+      }
     </style>
     <script>
       $(function () {
@@ -63,6 +88,7 @@
         const enemy03 = $("#enemy03");
         const enemy04 = $("#enemy04");
         const pompom = $("#pompom");
+        const gameover = $("#gameover");
         let count = 3;
 
         gameStart();
@@ -88,7 +114,16 @@
 
         function gameStart() {
           enemyMoving();
-          checkGameOver();
+        }
+
+        function gameOver() {
+          gameover.css("display", "block");
+        }
+
+       
+
+        function gameClear() {
+          $("#gameclear").css("display", "block");
         }
 
         function isColliding(el1, el2) {
@@ -105,15 +140,26 @@
         }
 
         function checkGameOver() {
-          // setInterval(function () {
-          for (let i = 0; i < 4; i++) {
-            if (isColliding(pompom[0], enemy[i])) {
+          for (let i = 0; i <= 3; i++) {
+            if (
+              $(enemy[i]).is(":visible") &&
+              isColliding(pompom[0], enemy[i])
+            ) {
               if (
                 pompom[0].getBoundingClientRect().width <
                 enemy[i].getBoundingClientRect().width
               ) {
                 pompom.stop();
                 enemy.stop();
+                gameOver();
+              } else if (
+                i === 3 &&
+                pompom[0].getBoundingClientRect().width >
+                  enemy[i].getBoundingClientRect().width
+              ) {
+                pompom.stop();
+                enemy.stop();
+                gameClear();
               } else {
                 $(pompom[0]).width(function (i, w) {
                   return w + 5;
@@ -121,16 +167,11 @@
                 $(pompom[0]).height(function (i, h) {
                   return h + 5;
                 });
-                $(enemy[i]).hide();//닿으면 사라짐.. 이 후에 enemy.show() 한 후 위취값... 
-
-                // pompom[0].style.width = (parseInt(pompom[0].style.width)+5)+'px';
-                // pompom[0].style.height = (parseInt(pompom[0].style.height)+5)+'px';
-                // console.log(typeof(pompom[0].style.width));
-                // console.log(typeof(parseInt(pompom[0].style.width)+5+'px'));
+                $(enemy[i]).hide(); //닿으면 사라짐.. 이 후에 enemy.show() 한 후 위치값...
               }
             }
           }
-          setTimeout(checkGameOver, 1000 / 60);
+          setTimeout(checkGameOver, 1000 / 30);
           // }, 1000 / 60);
         }
 
@@ -178,6 +219,8 @@
             );
 
             enemyMoving();
+            checkGameOver();
+            enemy.show();
           });
         }
 
@@ -209,6 +252,12 @@
   </head>
   <body>
     <div id="container">
+      <div id="clear">CLEAR</div>
+      <div id="gameover">
+        Game Over <br />
+        <input id="restartbutton" type="button" value="재시작" />
+      </div>
+
       <img id="pompom" src="images/pom.png" alt="" />
       <img id="enemy01" class="enemy" src="images/enemy.png" alt="" />
       <img id="enemy02" class="enemy" src="images/enemy.png" alt="" />
