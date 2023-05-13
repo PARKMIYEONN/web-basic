@@ -13,12 +13,14 @@
     <style>
       #container {
         position: absolute;
-        width: 400px;
+        width: 600px;
         height: 400px;
         border: 1px black solid;
         overflow: hidden;
         /* max-width: 81px; */
         z-index: 0;
+        background-image: url(images/background01.png);
+        background-size: cover;
       }
 
       #pompom {
@@ -26,8 +28,7 @@
         left: 100px;
         top: 150px;
         width: 30px;
-        height: 30px;
-        border: 1px solid;
+        /* border: 1px solid; */
         /* display: none; */
       }
 
@@ -57,23 +58,25 @@
       }
       #clear {
         position: absolute;
-        width: 400px;
+        width: 600px;
         height: 400px;
         text-align: center;
         font-size: xx-large;
-        background-image: url(../gameMY/images/pom.png);
         color: blue;
+        background-image: url(images/background01.png);
+        background-size: cover;
         padding-top: 155px;
         display: none;
         z-index: 1;
       }
       #gameover {
         position: absolute;
-        width: 400px;
+        width: 600px;
         height: 400px;
         text-align: center;
         font-size: xx-large;
-        background-image: url(../gameMY/images/pom.png);
+        background-image: url(images/background01.png);
+        background-size: cover;
         color: red;
         padding-top: 155px;
         display: none;
@@ -118,12 +121,14 @@
 
         function gameOver() {
           gameover.css("display", "block");
+          
         }
 
        
 
         function gameClear() {
           $("#gameclear").css("display", "block");
+          $(".enemy").css("display", "none");
         }
 
         function isColliding(el1, el2) {
@@ -194,7 +199,7 @@
 
         function enemyMoving() {
           const speed = getRandomNumber(2000, 2500);
-          enemy.animate({ right: "400px" }, speed, "linear", function () {
+          enemy.animate({ right: "600px" }, speed, "linear", function () {
             // score += 100;
             enemy.css("right", "-80px");
             enemy01.animate(
@@ -252,17 +257,17 @@
   </head>
   <body>
     <div id="container">
-      <div id="clear">CLEAR</div>
+      <div id="clear">CLEAR <br>재시작 : F5버튼 </div>
       <div id="gameover">
         Game Over <br />
-        <input id="restartbutton" type="button" value="재시작" />
+        재시작 : F5버튼
       </div>
 
-      <img id="pompom" src="images/pom.png" alt="" />
-      <img id="enemy01" class="enemy" src="images/enemy.png" alt="" />
-      <img id="enemy02" class="enemy" src="images/enemy.png" alt="" />
-      <img id="enemy03" class="enemy" src="images/enemy.png" alt="" />
-      <img id="enemy04" class="enemy" src="images/enemy.png" alt="" />
+      <img id="pompom" src="images/whale-removebg-preview.png" alt="" />
+      <img id="enemy01" class="enemy" src="images/fish01-removebg-preview.png" alt="" />
+      <img id="enemy02" class="enemy" src="images/fish02-removebg-preview.png" alt="" />
+      <img id="enemy03" class="enemy" src="images/fish03-removebg-preview.png" alt="" />
+      <img id="enemy04" class="enemy" src="images/shark-removebg-preview.png" alt="" />
     </div>
   </body>
 </html>
