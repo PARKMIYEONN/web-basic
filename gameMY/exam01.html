@@ -16,44 +16,44 @@
         width: 1000px;
         height: 650px;
         border: 1px black solid;
-        /* overflow: hidden; */
-        /* max-width: 81px; */
+        overflow: hidden;
         z-index: 0;
         background-image: url(images/background01.png);
         background-size: cover;
       }
 
-      #pompom {
+      #whale {
         position: absolute;
         left: 100px;
         top: 300px;
-        width: 100px;
+        width: 90px;
         transform: scaleX(-1);
         /* border: 1px solid; */
         /* display: none; */
         max-width: 250px;
+        max-height: 225px;
       }
 
-      .enemy {
+      .fish {
         position: absolute;
         right: 1000px;
       }
-      #enemy01 {
+      #fish01 {
         position: absolute;
         width: 80px;
         /* top: 10px; */
       }
-      #enemy02 {
+      #fish02 {
         position: absolute;
         width: 120px;
         /* top: 20px; */
       }
-      #enemy03 {
+      #fish03 {
         position: absolute;
         width: 150px;
         /* top: 40px; */
       }
-      #enemy04 {
+      #shark {
         position: absolute;
         width: 200px;
         height: 120px;
@@ -85,19 +85,110 @@
         display: none;
         z-index: 1;
       }
+
+      #biggest {
+        /* position: absolute; */
+        text-align: center;
+        font-size: xx-large;
+        font-weight: bold;
+        color: rgb(236, 90, 53);
+        display: none;
+        z-index: 3;
+      }
+      #smallest {
+        /* position: absolute; */
+        text-align: center;
+        font-size: xx-large;
+        color: rgb(121, 23, 151);
+        display: none;
+        z-index: 3;
+      }
+      #small{
+        /* position: absolute; */
+        text-align: center;
+        font-size: xx-large;
+        color: rgb(219, 201, 35);
+        display: none;
+        z-index: 3;
+      }
+      #big {
+        /* position: absolute; */
+        text-align: center;
+        font-size: xx-large;
+        color: rgb(240, 152, 21);
+        display: none;
+        z-index: 3;
+      }
+      
+      #start {
+        position: absolute;
+        width: 1000px;
+        height: 495px;
+        z-index: 3;
+        text-align: center;
+        background-image: url(images/background01.png);
+        background-size: cover;
+        display: block;
+        padding-top: 155px;
+        font-size: xx-large;
+        color: brown;
+        font-weight: bold;
+      }
+
+      #startwhale {
+        width: 150px;
+        /* transform: scaleX(-1); */
+        position: absolute;
+        /* transform: scaleX(-1); */
+      }
+      span{
+        background-color: rgb(255, 186, 240);
+      }
     </style>
     <script>
       $(function () {
-        const enemy = $(".enemy");
-        const enemy01 = $("#enemy01");
-        const enemy02 = $("#enemy02");
-        const enemy03 = $("#enemy03");
-        const enemy04 = $("#enemy04");
-        const pompom = $("#pompom");
+        const fish = $(".fish");
+        const fish01 = $("#fish01");
+        const fish02 = $("#fish02");
+        const fish03 = $("#fish03");
+        const shark = $("#shark");
+        const whale = $("#whale");
         const gameover = $("#gameover");
         let count = 3;
 
-        gameStart();
+        // gameStart();
+
+        // $("#startwhale").animate({left:"+=400px"}, 2500, "linear");
+        // $("#startwhale").css("transform","scaleX(-1)");
+        // $("#startwhale").animate({left:"-=500px"}, 2500, "linear");
+
+        // $("#startwhale").animate({left:"-=500px"}, 2500, "linear");
+        // // $("#startwhale").css("transform","scaleX(1)");
+        // $("#startwhale").animate({left:"+=500px"}, 2500, "linear");
+
+        function animateWhale(){
+          $("#startwhale").animate(
+            { left: "-=500px" },
+            2500,
+            "linear",
+            function () {
+              $(this).css("transform", "scaleX(-1)");
+            }
+          );
+          $("#startwhale").animate({ left: "+=500px" }, 2500, "linear");
+  
+          $("#startwhale").animate(
+            { left: "+=500px" },
+            2500,
+            "linear",
+            function () {
+              $(this).css("transform", "scaleX(1)");
+            }
+          );
+          $("#startwhale").animate({ left: "-=500px" }, 2500, "linear");
+        }
+        //시작 화면 고래 계속 움직임
+        setInterval(animateWhale, 0);
 
         //키보드 이벤트 정의
         $("html").keydown(function (e) {
@@ -118,28 +209,46 @@
           console.log(e.key);
         });
 
+        $("#startbtn").click(function () {
+          gameStart();
+          $("#start").css("display", "none");
+        });
+
         function gameStart() {
-          enemyMoving();
+          fishMoving();
+          smallest();
+          // compareWidth();
         }
+
+        // 테스트용
+        // function compareWidth() {
+        //   const whaleWidth = $("#whale").width();
+        //   const fishWidth = $("#fish").width();
+
+        //   if (whaleWidth > fishWidth) {
+        //     console.log("whale is bigger!");
+        //   } else if (whaleWidth < fishWidth) {
+        //     console.log("fish is bigger!");
+        //   } else {
+        //     console.log("whale and fish have the same width!");
+        //   }
+        // }
 
         function gameOver() {
           gameover.css("display", "block");
-          
         }
 
-       
-
         function gameClear() {
-          $("#gameclear").css("display", "block");
-          $(".enemy").css("display", "none");
+          $("#clear").css("display", "block");
+          $(".fish").css("display", "none");
         }
 
         function isColliding(el1, el2) {
           const rect1 = {
-            bottom:el1.getBoundingClientRect().bottom - 50,
-            top:el1.getBoundingClientRect().top +20,
-            right:el1.getBoundingClientRect().right,
-            left:el1.getBoundingClientRect().left
+            bottom: el1.getBoundingClientRect().bottom - 30,
+            top: el1.getBoundingClientRect().top + 20,
+            right: el1.getBoundingClientRect().right,
+            left: el1.getBoundingClientRect().left,
           };
           const rect2 = el2.getBoundingClientRect();
 
@@ -151,53 +260,70 @@
             rect1.bottom < rect2.top
           );
         }
+        function biggest() {
+          $("#biggest").css("display", "block");
+        }
+        function smallest() {
+          $("#smallest").css("display", "block");
+        }
+        function small() {
+          $("#small").css("display", "block");
+        }
+        function big() {
+          $("#big").css("display", "block");
+        }
 
+        
         function checkGameOver() {
           for (let i = 0; i <= 3; i++) {
-            if (
-              $(enemy[i]).is(":visible") &&
-              isColliding(pompom[0], enemy[i])
-            ) {
+            if ($(fish[i]).is(":visible") && isColliding(whale[0], fish[i])) {
               if (
-                pompom[0].getBoundingClientRect().width <
-                enemy[i].getBoundingClientRect().width
+                whale[0].getBoundingClientRect().width <
+                fish[i].getBoundingClientRect().width
               ) {
-                pompom.stop();
-                enemy.stop();
+                whale.stop();
+                fish.stop();
                 gameOver();
               } else if (
                 i === 3 &&
-                pompom[0].getBoundingClientRect().width >
-                  enemy[i].getBoundingClientRect().width
+                whale[0].getBoundingClientRect().width >
+                  fish[i].getBoundingClientRect().width
               ) {
-                pompom.stop();
-                enemy.stop();
+                whale.stop();
+                fish.stop();
                 gameClear();
               } else {
-                $(pompom[0]).width(function (i, w) {
+                if (whale[0].getBoundingClientRect().width >= 200) {
+                  biggest();
+                } else if(whale[0].getBoundingClientRect().width >= 150){
+                  big();
+                }else if(whale[0].getBoundingClientRect().width >= 120){
+                  small();
+                } 
+                $(whale[0]).width(function (i, w) {
                   return w + 5;
                 });
-                $(pompom[0]).height(function (i, h) {
+                $(whale[0]).height(function (i, h) {
                   return h + 5;
                 });
-                $(enemy[i]).hide(); //닿으면 사라짐.. 이 후에 enemy.show() 한 후 위치값...
+                $(fish[i]).hide(); //닿으면 사라짐.. 이 후에 fish.show() 한 후 위치값...
               }
             }
           }
-          setTimeout(checkGameOver, 1000 / 30);
+          setTimeout(checkGameOver, 1000 / 60);
           // }, 1000 / 60);
         }
 
         // 왼쪽 기준으로 150px 떨어진 곳으로 이동해라
         function moveRight() {
           // 오른쪽 벽에 닿았는지
-          const pompomRightMargin = $("#pompom").css("right").replace("px", "");
-          if (pompomRightMargin > 0) {
-            pompom.animate({ left: "+=20px" }, 0);
+          const whaleRightMargin = $("#whale").css("right").replace("px", "");
+          if (whaleRightMargin > 0) {
+            whale.animate({ left: "+=20px" }, 0);
           }
           // 보정
-          if (pompomRightMargin < 0) {
-            pompom.animate({ left: "250px" }, 0);
+          if (whaleRightMargin < 0) {
+            whale.animate({ left: "250px" }, 0);
           }
         }
 
@@ -205,60 +331,58 @@
           return Math.floor(Math.random() * (max - min + 1)) + min;
         }
 
-        function enemyMoving() {
-          const speed = getRandomNumber(2000, 2500);
-          enemy.animate({ right: "1000px" }, speed, "linear", function () {
-          //   // score += 200;
-            enemy.css("right", "-200px");
-            enemy01.animate(
+        function fishMoving() {
+          const speed = getRandomNumber(3000, 3500);
+          fish.animate({ right: "1000px" }, speed, "linear", function () {
+            //   // score += 200;
+            fish.css("right", "-200px");
+            fish01.animate(
               { top: getRandomNumber(5, 550) + "px" },
               getRandomNumber(2000, 2500),
               "linear"
             );
-            enemy02.animate(
+            fish02.animate(
               { top: getRandomNumber(5, 550) + "px" },
               getRandomNumber(2500, 2800),
               "linear"
             );
-            enemy03.animate(
+            fish03.animate(
               { top: getRandomNumber(5, 550) + "px" },
               getRandomNumber(2800, 3000),
               "linear"
             );
-            enemy04.animate(
+            shark.animate(
               { top: getRandomNumber(5, 550) + "px" },
               getRandomNumber(3000, 3200),
-              "linear",
-              // enemy.animate({right:"1000px"},speed, "linear")
+              "linear"
+              // fish.animate({right:"1000px"},speed, "linear")
             );
 
-            enemyMoving();
+            fishMoving();
             checkGameOver();
-            enemy.show();
+            fish.show();
           });
         }
 
         // 왼쪽 기준으로 50px 떨어진 곳으로 이동해라
         function moveLeft() {
-          const pompomLeftMargin = $("#pompom").css("left").replace("px", "");
-          if (pompomLeftMargin > 0) {
-            pompom.animate({ left: "-=20px" }, 0);
+          const whaleLeftMargin = $("#whale").css("left").replace("px", "");
+          if (whaleLeftMargin > 0) {
+            whale.animate({ left: "-=20px" }, 0);
           }
         }
 
         function moveUp() {
-          const pompomTopMargin = $("#pompom").css("top").replace("px", "");
-          if (pompomTopMargin > 0) {
-            pompom.animate({ top: "-=20px" }, 0);
+          const whaleTopMargin = $("#whale").css("top").replace("px", "");
+          if (whaleTopMargin > 0) {
+            whale.animate({ top: "-=20px" }, 0);
           }
         }
 
         function moveDown() {
-          const pompomBottomMargin = $("#pompom")
-            .css("bottom")
-            .replace("px", "");
-          if (pompomBottomMargin > 0) {
-            pompom.animate({ top: "+=20px" }, 0);
+          const whaleBottomMargin = $("#whale").css("bottom").replace("px", "");
+          if (whaleBottomMargin > 0) {
+            whale.animate({ top: "+=20px" }, 0);
           }
         }
       });
@@ -266,17 +390,53 @@
   </head>
   <body>
     <div id="container">
-      <div id="clear">CLEAR <button onclick="window.location.reload()">재시작</button> </div>
+      <div id="start">
+        <img
+          id="startwhale"
+          src="images/whale-removebg-preview.png"
+          alt=""
+        /><br /><br /><br /><br />
+        <span>아기 고래 키우기</span>
+        <br />
+        <input id="startbtn" type="button" value="Game Start" />
+      </div>
+      <div id="clear">
+        CLEAR <br /><button onclick="window.location.reload()">재시작</button>
+      </div>
       <div id="gameover">
         Game Over <br />
         <button onclick="window.location.reload()">재시작</button>
       </div>
+      <div id="biggest">상어를 물리치자!</div>
+      <div id="smallest">보라색 물고기를 먹자</div>
+      <div id="small">노란색 물고기도 먹자</div>
+      <div id="big">주황색 물고기도 먹자</div>
 
-      <img id="pompom" src="images/whale-removebg-preview.png" alt="" />
-      <img id="enemy01" class="enemy" src="images/fish01-removebg-preview.png" alt="" />
-      <img id="enemy02" class="enemy" src="images/fish02-removebg-preview.png" alt="" />
-      <img id="enemy03" class="enemy" src="images/fish03-removebg-preview.png" alt="" />
-      <img id="enemy04" class="enemy" src="images/shark-removebg-preview.png" alt="" />
+      <img id="whale" src="images/whale-removebg-preview.png" alt="" />
+      <img
+        id="fish01"
+        class="fish"
+        src="images/fish01-removebg-preview.png"
+        alt=""
+      />
+      <img
+        id="fish02"
+        class="fish"
+        src="images/fish02-removebg-preview.png"
+        alt=""
+      />
+      <img
+        id="fish03"
+        class="fish"
+        src="images/fish03-removebg-preview.png"
+        alt=""
+      />
+      <img
+        id="shark"
+        class="fish"
+        src="images/shark-removebg-preview.png"
+        alt=""
+      />
     </div>
   </body>
 </html>
