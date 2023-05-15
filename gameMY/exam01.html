@@ -13,10 +13,10 @@
     <style>
       #container {
         position: absolute;
-        width: 600px;
-        height: 400px;
+        width: 1000px;
+        height: 650px;
         border: 1px black solid;
-        overflow: hidden;
+        /* overflow: hidden; */
         /* max-width: 81px; */
         z-index: 0;
         background-image: url(images/background01.png);
@@ -26,8 +26,9 @@
       #pompom {
         position: absolute;
         left: 100px;
-        top: 150px;
-        width: 30px;
+        top: 300px;
+        width: 100px;
+        transform: scaleX(-1);
         /* border: 1px solid; */
         /* display: none; */
       }
@@ -38,28 +39,29 @@
       }
       #enemy01 {
         position: absolute;
-        width: 20px;
+        width: 80px;
         /* top: 10px; */
       }
       #enemy02 {
         position: absolute;
-        width: 40px;
+        width: 120px;
         /* top: 20px; */
       }
       #enemy03 {
         position: absolute;
-        width: 60px;
+        width: 150px;
         /* top: 40px; */
       }
       #enemy04 {
         position: absolute;
-        width: 80px;
+        width: 200px;
+        height: 120px;
         /* top: 50px; */
       }
       #clear {
         position: absolute;
-        width: 600px;
-        height: 400px;
+        width: 1000px;
+        height: 495px;
         text-align: center;
         font-size: xx-large;
         color: blue;
@@ -71,8 +73,8 @@
       }
       #gameover {
         position: absolute;
-        width: 600px;
-        height: 400px;
+        width: 1000px;
+        height: 495px;
         text-align: center;
         font-size: xx-large;
         background-image: url(images/background01.png);
@@ -199,27 +201,27 @@
 
         function enemyMoving() {
           const speed = getRandomNumber(2000, 2500);
-          enemy.animate({ right: "600px" }, speed, "linear", function () {
-            // score += 100;
-            enemy.css("right", "-80px");
+          enemy.animate({ right: "1000px" }, speed, "linear", function () {
+            // score += 200;
+            enemy.css("right", "-200px");
             enemy01.animate(
-              { top: getRandomNumber(5, 340) + "px" },
-              getRandomNumber(1500, 2000),
-              "linear"
-            );
-            enemy02.animate(
               { top: getRandomNumber(5, 340) + "px" },
               getRandomNumber(2000, 2500),
               "linear"
             );
+            enemy02.animate(
+              { top: getRandomNumber(5, 340) + "px" },
+              getRandomNumber(2500, 2800),
+              "linear"
+            );
             enemy03.animate(
               { top: getRandomNumber(5, 340) + "px" },
-              getRandomNumber(2300, 2500),
+              getRandomNumber(2800, 3000),
               "linear"
             );
             enemy04.animate(
               { top: getRandomNumber(5, 340) + "px" },
-              getRandomNumber(2500, 2700),
+              getRandomNumber(3000, 3200),
               "linear"
             );
 
@@ -257,10 +259,10 @@
   </head>
   <body>
     <div id="container">
-      <div id="clear">CLEAR <br>재시작 : F5버튼 </div>
+      <div id="clear">CLEAR <button onclick="window.location.reload()">재시작</button> </div>
       <div id="gameover">
         Game Over <br />
-        재시작 : F5버튼
+        <button onclick="window.location.reload()">재시작</button>
       </div>
 
       <img id="pompom" src="images/whale-removebg-preview.png" alt="" />
