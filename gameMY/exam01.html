@@ -31,11 +31,12 @@
         transform: scaleX(-1);
         /* border: 1px solid; */
         /* display: none; */
+        max-width: 250px;
       }
 
       .enemy {
         position: absolute;
-        right: 0px;
+        right: 1000px;
       }
       #enemy01 {
         position: absolute;
@@ -134,7 +135,12 @@
         }
 
         function isColliding(el1, el2) {
-          const rect1 = el1.getBoundingClientRect();
+          const rect1 = {
+            bottom:el1.getBoundingClientRect().bottom - 50,
+            top:el1.getBoundingClientRect().top +20,
+            right:el1.getBoundingClientRect().right,
+            left:el1.getBoundingClientRect().left
+          };
           const rect2 = el2.getBoundingClientRect();
 
           return !(
@@ -202,27 +208,28 @@
         function enemyMoving() {
           const speed = getRandomNumber(2000, 2500);
           enemy.animate({ right: "1000px" }, speed, "linear", function () {
-            // score += 200;
+          //   // score += 200;
             enemy.css("right", "-200px");
             enemy01.animate(
-              { top: getRandomNumber(5, 340) + "px" },
+              { top: getRandomNumber(5, 550) + "px" },
               getRandomNumber(2000, 2500),
               "linear"
             );
             enemy02.animate(
-              { top: getRandomNumber(5, 340) + "px" },
+              { top: getRandomNumber(5, 550) + "px" },
               getRandomNumber(2500, 2800),
               "linear"
             );
             enemy03.animate(
-              { top: getRandomNumber(5, 340) + "px" },
+              { top: getRandomNumber(5, 550) + "px" },
               getRandomNumber(2800, 3000),
               "linear"
             );
             enemy04.animate(
-              { top: getRandomNumber(5, 340) + "px" },
+              { top: getRandomNumber(5, 550) + "px" },
               getRandomNumber(3000, 3200),
-              "linear"
+              "linear",
+              // enemy.animate({right:"1000px"},speed, "linear")
             );
 
             enemyMoving();
