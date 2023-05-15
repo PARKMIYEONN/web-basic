@@ -55,8 +55,8 @@
       }
       #shark {
         position: absolute;
-        width: 200px;
-        height: 120px;
+        width: 250px;
+        /* height: 120px; */
         /* top: 50px; */
       }
       #clear {
@@ -283,9 +283,9 @@
                   return w + 5;
                 });
                 $(whale[0]).height(function (i, h) {
-                  return h + 5;
+                  return h + 5;                       //width와 height 5씩 커짐
                 });
-                $(fish[i]).hide(); //닿으면 사라짐.. 이 후에 fish.show() 한 후 위치값...
+                $(fish[i]).hide(); //닿으면 사라짐.
               }
             }
           }
@@ -310,9 +310,9 @@
         }
 
         function fishMoving() {
-          const speed = getRandomNumber(3500, 4000);
+          const speed = getRandomNumber(3000, 3500);
           fish.animate({ right: "1000px" }, speed, "linear", function () {
-            fish.css("right", "-200px");
+            fish.css("right", "-250px");
             fish01.animate(
               { top: getRandomNumber(5, 550) + "px" },
               getRandomNumber(2000, 2500),
