@@ -89,7 +89,6 @@
       }
 
       #biggest {
-        /* position: absolute; */
         text-align: center;
         font-size: xx-large;
         font-weight: bold;
@@ -98,7 +97,6 @@
         z-index: 3;
       }
       #smallest {
-        /* position: absolute; */
         text-align: center;
         font-size: xx-large;
         color: rgb(121, 23, 151);
@@ -106,7 +104,6 @@
         z-index: 3;
       }
       #small{
-        /* position: absolute; */
         text-align: center;
         font-size: xx-large;
         color: rgb(219, 201, 35);
@@ -114,7 +111,6 @@
         z-index: 3;
       }
       #big {
-        /* position: absolute; */
         text-align: center;
         font-size: xx-large;
         color: rgb(240, 152, 21);
@@ -139,12 +135,17 @@
 
       #startwhale {
         width: 150px;
-        /* transform: scaleX(-1); */
         position: absolute;
-        /* transform: scaleX(-1); */
       }
       span{
         background-color: rgb(255, 186, 240);
+      }
+
+      #introduction{
+        font-size: small;
+        position: absolute;
+        top: 600px;
+        right: 10px;
       }
     </style>
     <script>
@@ -157,16 +158,6 @@
         const whale = $("#whale");
         const gameover = $("#gameover");
         let count = 3;
-
-        // gameStart();
-
-        // $("#startwhale").animate({left:"+=400px"}, 2500, "linear");
-        // $("#startwhale").css("transform","scaleX(-1)");
-        // $("#startwhale").animate({left:"-=500px"}, 2500, "linear");
-
-        // $("#startwhale").animate({left:"-=500px"}, 2500, "linear");
-        // // $("#startwhale").css("transform","scaleX(1)");
-        // $("#startwhale").animate({left:"+=500px"}, 2500, "linear");
 
         function animateWhale(){
           $("#startwhale").animate(
@@ -219,22 +210,8 @@
         function gameStart() {
           fishMoving();
           smallest();
-          // compareWidth();
         }
 
-        // 테스트용
-        // function compareWidth() {
-        //   const whaleWidth = $("#whale").width();
-        //   const fishWidth = $("#fish").width();
-
-        //   if (whaleWidth > fishWidth) {
-        //     console.log("whale is bigger!");
-        //   } else if (whaleWidth < fishWidth) {
-        //     console.log("fish is bigger!");
-        //   } else {
-        //     console.log("whale and fish have the same width!");
-        //   }
-        // }
 
         function gameOver() {
           gameover.css("display", "block");
@@ -313,7 +290,6 @@
             }
           }
           setTimeout(checkGameOver, 1000 / 60);
-          // }, 1000 / 60);
         }
 
         // 왼쪽 기준으로 150px 떨어진 곳으로 이동해라
@@ -336,7 +312,6 @@
         function fishMoving() {
           const speed = getRandomNumber(3500, 4000);
           fish.animate({ right: "1000px" }, speed, "linear", function () {
-            //   // score += 200;
             fish.css("right", "-200px");
             fish01.animate(
               { top: getRandomNumber(5, 550) + "px" },
@@ -357,7 +332,6 @@
               { top: getRandomNumber(5, 550) + "px" },
               getRandomNumber(3000, 3200),
               "linear"
-              // fish.animate({right:"1000px"},speed, "linear")
             );
 
             fishMoving();
@@ -401,6 +375,7 @@
         <span>아기 고래 키우기</span>
         <br />
         <input id="startbtn" type="button" value="Game Start" />
+        <div id="introduction">개발자 : 박미연<br>github : https://github.com/PARKMIYEONN</div>
       </div>
       <div id="clear">
         CLEAR <br />어른고래가 되었습니다 <br><button onclick="window.location.reload()">재시작</button><br>
