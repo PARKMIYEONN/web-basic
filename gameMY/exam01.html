@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>* ~ 바다이야기 ~ *</title>
     <script
       src="https://code.jquery.com/jquery-3.6.4.js"
       integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
@@ -71,6 +71,7 @@
         padding-top: 155px;
         display: none;
         z-index: 1;
+        font-weight: bold;
       }
       #gameover {
         position: absolute;
@@ -84,6 +85,7 @@
         padding-top: 155px;
         display: none;
         z-index: 1;
+        font-weight: bold;
       }
 
       #biggest {
@@ -168,24 +170,24 @@
 
         function animateWhale(){
           $("#startwhale").animate(
-            { left: "-=500px" },
+            { left: "-=400px" },
             2500,
             "linear",
             function () {
               $(this).css("transform", "scaleX(-1)");
             }
           );
-          $("#startwhale").animate({ left: "+=500px" }, 2500, "linear");
+          $("#startwhale").animate({ left: "+=400px" }, 2500, "linear");
   
           $("#startwhale").animate(
-            { left: "+=500px" },
+            { left: "+=400px" },
             2500,
             "linear",
             function () {
               $(this).css("transform", "scaleX(1)");
             }
           );
-          $("#startwhale").animate({ left: "-=500px" }, 2500, "linear");
+          $("#startwhale").animate({ left: "-=400px" }, 2500, "linear");
         }
         //시작 화면 고래 계속 움직임
         setInterval(animateWhale, 0);
@@ -332,7 +334,7 @@
         }
 
         function fishMoving() {
-          const speed = getRandomNumber(3000, 3500);
+          const speed = getRandomNumber(3500, 4000);
           fish.animate({ right: "1000px" }, speed, "linear", function () {
             //   // score += 200;
             fish.css("right", "-200px");
@@ -401,10 +403,11 @@
         <input id="startbtn" type="button" value="Game Start" />
       </div>
       <div id="clear">
-        CLEAR <br /><button onclick="window.location.reload()">재시작</button>
+        CLEAR <br />어른고래가 되었습니다 <br><button onclick="window.location.reload()">재시작</button><br>
+      <img src="images/whale-removebg-preview.png" style="width: 250px;" alt="">
       </div>
       <div id="gameover">
-        Game Over <br />
+        Game Over <br /> 아기고래가 도망갔어요 <br>
         <button onclick="window.location.reload()">재시작</button>
       </div>
       <div id="biggest">상어를 물리치자!</div>
