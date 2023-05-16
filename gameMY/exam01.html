@@ -103,7 +103,7 @@
         display: none;
         z-index: 3;
       }
-      #small{
+      #small {
         text-align: center;
         font-size: xx-large;
         color: rgb(219, 201, 35);
@@ -117,7 +117,7 @@
         display: none;
         z-index: 3;
       }
-      
+
       #start {
         position: absolute;
         width: 1000px;
@@ -137,11 +137,11 @@
         width: 150px;
         position: absolute;
       }
-      span{
+      span {
         background-color: rgb(255, 186, 240);
       }
 
-      #introduction{
+      #introduction {
         font-size: small;
         position: absolute;
         top: 600px;
@@ -159,7 +159,7 @@
         const gameover = $("#gameover");
         let count = 3;
 
-        function animateWhale(){
+        function animateWhale() {
           $("#startwhale").animate(
             { left: "-=400px" },
             2500,
@@ -169,7 +169,7 @@
             }
           );
           $("#startwhale").animate({ left: "+=400px" }, 2500, "linear");
-  
+
           $("#startwhale").animate(
             { left: "+=400px" },
             2500,
@@ -212,7 +212,6 @@
           smallest();
         }
 
-
         function gameOver() {
           gameover.css("display", "block");
         }
@@ -252,7 +251,6 @@
           $("#big").css("display", "block");
         }
 
-        
         function checkGameOver() {
           for (let i = 0; i <= 3; i++) {
             if ($(fish[i]).is(":visible") && isColliding(whale[0], fish[i])) {
@@ -274,16 +272,16 @@
               } else {
                 if (whale[0].getBoundingClientRect().width >= 250) {
                   biggest();
-                } else if(whale[0].getBoundingClientRect().width >= 150){
+                } else if (whale[0].getBoundingClientRect().width >= 150) {
                   big();
-                }else if(whale[0].getBoundingClientRect().width >= 120){
+                } else if (whale[0].getBoundingClientRect().width >= 120) {
                   small();
-                } 
+                }
                 $(whale[0]).width(function (i, w) {
                   return w + 5;
                 });
                 $(whale[0]).height(function (i, h) {
-                  return h + 5;                       //width와 height 5씩 커짐
+                  return h + 5; //width와 height 5씩 커짐
                 });
                 $(fish[i]).hide(); //닿으면 사라짐.
               }
@@ -375,14 +373,25 @@
         <span>아기 고래 키우기</span>
         <br />
         <input id="startbtn" type="button" value="Game Start" />
-        <div id="introduction">개발자 : 박미연<br>github : https://github.com/PARKMIYEONN</div>
+        <div id="introduction">
+          개발자 : 박미연<br />github : https://github.com/PARKMIYEONN
+        </div>
       </div>
       <div id="clear">
-        CLEAR <br />어른고래가 되었습니다 <br><button onclick="window.location.reload()">재시작</button><br>
-      <img src="images/whale-removebg-preview.png" style="width: 250px;" alt="">
+        CLEAR <br />어른고래가 되었습니다 <br /><button
+          onclick="window.location.reload()"
+        >
+          재시작</button
+        ><br />
+        <img
+          src="images/whale-removebg-preview.png"
+          style="width: 250px"
+          alt=""
+        />
       </div>
       <div id="gameover">
-        Game Over <br /> 아기고래가 도망갔어요 <br>
+        Game Over <br />
+        아기고래가 도망갔어요 <br />
         <button onclick="window.location.reload()">재시작</button>
       </div>
       <div id="biggest">상어를 물리치자!</div>
