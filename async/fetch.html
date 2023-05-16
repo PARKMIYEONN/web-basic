@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+    src="https://code.jquery.com/jquery-3.6.4.js"
+    integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
+    crossorigin="anonymous"
+  ></script>
+    <script>
+      function loadDoc() {
+        //비동기(콜 => 기다림)
+        fetch("https://jsonplaceholder.typicode.com/todos/1")
+          .then((response) => response.json())
+        //   .then((json) => console.log(json));
+            .then(json => {
+                // $('#demo').text(json) 오브젝트로 인식, 스트링으로 바꿔줘야 함
+
+                // json을 string으로 변경
+                // 자바에는 없는 기능이래
+                // $('#demo').text(JSON.stringify(json));
+
+                //필요한 거 빼다 쓰기
+                $('#demo').text(json.title);
+            })
+
+          //동기
+          console.log("끝");
+      }
+    </script>
+  </head>
+  <body>
+    <input type="button" value="실행" onclick="loadDoc()" />
+    <div id="demo"></div>
+  </body>
+</html>
