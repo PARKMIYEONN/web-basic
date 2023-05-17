@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+
+  <!-- 컴퓨티드 -->
+
+  <body>
+    <div id="app">
+      <input type="text" v-model="message" />
+      
+      <!-- 컴퓨티드가 관찰할 떄 쓰는 거 -->
+      <div>{{upperCaseMessage}}</div>           
+      
+    </div>
+    <script>
+      //   const app =  없어도 가능
+      new Vue({
+        el: "#app",
+        data: {
+          message: "", //메세지
+        },
+        computed: {
+          upperCaseMessage: function () {
+            return this.message.toUpperCase();
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
